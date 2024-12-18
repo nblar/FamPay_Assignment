@@ -8,7 +8,7 @@ class Youtube {
     console.log("I'M _____");
     console.log(CONSTANTS.YOUTUBE_API_KEYS);
     
-    this.keyList = CONSTANTS.YOUTUBE_API_KEYS.split(",").map((key) =>
+    this.keyList = CONSTANTS.YOUTUBE_API_KEYS.split("||").map((key) =>
       key.trim()
     );
     this.currentKeyIndex = 0;
