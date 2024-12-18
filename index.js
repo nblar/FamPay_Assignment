@@ -1,11 +1,19 @@
-const express = require('express');
+const express = require("express");
+const api = require("./api");
+
+require("dotenv").config({
+  path: `${__dirname}/.env.${process.env.NODE_ENV}`,
+});
+
+const CONSTANTS = require("./config/constants");
+require("./utils/dbConnect");
+// require("./src/cron/fetchVideos");
+const errorHandler = require("./error/errorHandler");
+
 const app = express();
-const port = 3000;
 
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
+app.use(express.json());
+app.use("/api", api);
+app.use(errorHandler);
 
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
+app.listen(CONSTANTS.PORT || 3000);
